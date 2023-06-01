@@ -1,5 +1,5 @@
 'use strict'
-const { randomBytes } = require('crypto')
+const { randomBytes } = require('crypto-browserify')
 const { inspect: { custom: customInspectSymbol }, promisify } = require('util')
 const base62 = require('./base62')
 
