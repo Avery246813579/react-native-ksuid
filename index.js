@@ -1,9 +1,9 @@
 'use strict'
-const { randomBytes } = require('crypto-browserify')
+const { randomBuffer } = require('secure-random')
 const { inspect: { custom: customInspectSymbol }, promisify } = require('util')
 const base62 = require('./base62')
 
-const asyncRandomBytes = promisify(randomBytes)
+const asyncRandomBytes = promisify(randomBuffer)
 
 // KSUID's epoch starts more recently so that the 32-bit number space gives a
 // significantly higher useful lifetime of around 136 years from March 2014.
@@ -109,7 +109,7 @@ class KSUID {
   }
 
   static randomSync (time = Date.now()) {
-    const payload = randomBytes(PAYLOAD_BYTE_LENGTH)
+    const payload = randomBuffer(PAYLOAD_BYTE_LENGTH)
     return new KSUID(fromParts(Number(time), payload))
   }
 
